@@ -1,0 +1,55 @@
+<form class="form-signin" #f="ngForm" (ngSubmit)="login(f)">
+  <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+
+  <div class="form-row">
+    <div class="col mb-3">
+      <label for="inputEmail">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        [class.is-invalid]="f.submitted && f.controls['email'].errors"
+        placeholder="Email"
+        name="email"
+        required
+        autofocus
+        email
+        [(ngModel)]="user.email">
+      <div class="invalid-feedback" *ngIf="f.submitted && f.controls['email'].errors">
+        Please, enter a valid email
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col mb-3">
+      <label for="inputPassword">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        [class.is-invalid]="f.submitted && f.controls['password'].errors"
+        placeholder="Password"
+        name="password"
+        required
+        minlength="6"
+        [(ngModel)]="user.password">
+      <div class="invalid-feedback" *ngIf="f.submitted && f.controls['password'].errors">
+        Please, enter your password (6 characters)
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col mb-3">
+      <div class="d-flex justify-content-between">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" [(ngModel)]="remember" value="remember-me" name="remember-me"> Remember me
+          </label>
+        </div>
+        <a routerLink="/register">¿New user?</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-lg btn-dark btn-block" type="submit">Sign in</button>
+</form>
